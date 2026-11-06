@@ -1,15 +1,15 @@
 # VNA casero - GUI (PyQt6)
 
 Interfaz grafica para controlar el VNA casero (2x ADF4351 + Arduino + placa
-de sonido), basada en la logica de `VNA_calibrado.py`.
+de sonido), basada en la logica de `e-uVNA_SW.py`.
 
 ## Archivos
 
-- `vna_core.py` - Toda la logica de adquisicion, filtrado FIR, FFT, deteccion
+- `euvna_core.py` - Toda la logica de adquisicion, filtrado FIR, FFT, deteccion
   del tono de batido y algebra de calibracion SOL. Es el mismo calculo que
   el script original, solo que sin `input()`/`tkinter` bloqueantes: expone
   callbacks de progreso y una forma de abortar un barrido en curso.
-- `vna_gui.py` - La ventana PyQt6: conexion al Arduino, configuracion de
+- `euvna_gui.py` - La ventana PyQt6: conexion al Arduino, configuracion de
   barrido (inicio/fin/paso), wizard de calibracion SOL con botones,
   medicion del DUT, y graficos en vivo de modulo, fase y abaco de Smith.
 
@@ -25,7 +25,7 @@ FTDI, etc.) instalado para que el puerto COM aparezca en el sistema.
 ## Uso
 
 ```bash
-python vna_gui.py
+python euvna_gui.py
 ```
 
 1. Cargar el puerto serie (ej. `COM3` o `/dev/ttyACM0`) y presionar
@@ -64,5 +64,5 @@ final. Antes de confiar en el para mediciones reales conviene:
   barrido, hoy se corta con una excepcion mostrada en un QMessageBox: capturalo
   y probá que el mensaje sea claro para vos.
 - **Empaquetado a .exe**: cuando este validado, `pyinstaller --noconfirm
-  --onefile vna_gui.py` (ajustando hooks si sounddevice/matplotlib no se
+  --onefile euvna_gui.py` (ajustando hooks si sounddevice/matplotlib no se
   detectan solos) te da el ejecutable standalone.
